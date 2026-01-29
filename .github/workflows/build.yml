@@ -12,17 +12,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    # ✅ Install ESP-IDF using official Espressif CI Action
     - name: Setup ESP-IDF
       uses: espressif/esp-idf-ci-action@v1
       with:
-        esp_idf_version: v5.1  # latest stable
+        esp_idf_version: v5.1
         target: esp32s3
 
+    # ✅ Build the project
     - name: Build firmware
-      run: |
-        source $IDF_PATH/export.sh
-        idf.py build
+      run: idf.py build
 
+    # ✅ Upload the ESP-IDF binaries
     - name: Upload ESP-IDF binaries
       uses: actions/upload-artifact@v4
       with:
