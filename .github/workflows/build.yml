@@ -15,12 +15,12 @@ jobs:
     - name: Setup ESP-IDF
       uses: espressif/esp-idf-ci-action@v1
       with:
-        esp_idf_version: v5.1
+        esp_idf_version: v5.1  # latest stable
         target: esp32s3
 
     - name: Build firmware
       run: |
-        idf.py set-target esp32s3
+        source $IDF_PATH/export.sh
         idf.py build
 
     - name: Upload ESP-IDF binaries
